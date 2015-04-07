@@ -14,4 +14,6 @@ ONBUILD COPY . /usr/src/app
 ONBUILD RUN bower install --allow-root
 ONBUILD RUN tsd reinstall --save
 
+EXPOSE 9000
+
 CMD [ "grunt", "serve:dist" ]
