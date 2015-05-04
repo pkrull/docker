@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get install python-pip python-dev git -y
 RUN pip install PyYAML jinja2 paramiko boto
 RUN git clone https://github.com/ansible/ansible.git --recursive
-RUN cd ansible && git checkout tags/v1.9.1-0.2.rc2 && git submodule update --recursive && . ./hacking/env-setup && make install
+RUN cd ansible && git checkout tags/v1.9.1-1 && git submodule update --recursive && . ./hacking/env-setup && make install
 RUN pip install http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
 # Mounting with a volume now
 #COPY .ssh /root/.ssh
