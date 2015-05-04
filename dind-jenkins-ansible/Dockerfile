@@ -1,6 +1,6 @@
 FROM jenkins
 MAINTAINER ryan.walls@3dsim.com
-# Credit goes to: Johan Haleby http://www.jayway.com/2015/03/14/docker-in-docker-with-jenkins-and-supervisord/ 
+# Credit goes to: Johan Haleby http://www.jayway.com/2015/03/14/docker-in-docker-with-jenkins-and-supervisord/
 
 # Switch user to root so that we can install apps (jenkins image switches to user "jenkins" in the end)
 USER root
@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get install python-pip python-dev git -y
 RUN pip install PyYAML jinja2 paramiko boto
 RUN git clone https://github.com/ansible/ansible.git --recursive
-RUN cd ansible && git checkout tags/v1.9.1-0.2.rc2 
+RUN cd ansible && git checkout tags/v1.9.1-0.2.rc2 && git submodule update --recursive && . ./hacking/env-setup && make install
 RUN pip install http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
 # Mounting with a volume now
 #COPY .ssh /root/.ssh
