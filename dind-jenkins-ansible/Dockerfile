@@ -44,6 +44,8 @@ RUN gpasswd -a jenkins docker
 ADD ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/wrapdocker
 
+ENV DOCKER_DAEMON_ARGS='--storage-opt dm.basesize=100G'
+
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
