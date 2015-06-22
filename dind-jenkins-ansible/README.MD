@@ -6,3 +6,4 @@ Main differences:
 * Added ansible install
 * Running jenkins as root user
 * For amazon linux ami, need to kill internal docker gracefully using `start-stop-daemon --stop --pidfile "/var/run/docker.pid"` (not in this repo, but important to know when you stop the container.)  Found from this article: http://paislee.io/how-to-build-and-deploy-docker-images-with-drone/
+* Added golang install and https://github.com/aktau/github-release tool.

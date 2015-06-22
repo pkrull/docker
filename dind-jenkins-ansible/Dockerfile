@@ -15,6 +15,13 @@ RUN pip install http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
 # Mounting with a volume now
 #COPY .ssh /root/.ssh
 
+# Install github-release tool
+RUN apt-get install golang -y && mkdir /root/gocode
+ENV GOPATH /root/gocode
+ENV PATH $GOPATH/bin:$PATH
+RUN go get github.com/aktau/github-release
+# At container runtime will need to specify GITHUB_TOKEN env variable
+
 # Install AWS CLI
 RUN pip install awscli
 
