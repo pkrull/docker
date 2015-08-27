@@ -1,4 +1,4 @@
-FROM jenkins
+FROM jenkins:1.609.2
 MAINTAINER ryan.walls@3dsim.com
 # Credit goes to: Johan Haleby http://www.jayway.com/2015/03/14/docker-in-docker-with-jenkins-and-supervisord/
 
@@ -6,12 +6,13 @@ MAINTAINER ryan.walls@3dsim.com
 USER root
 
 # Install ansible dependencies (Perhaps move this into a separate container?)
-RUN apt-get update
-RUN apt-get install python-pip python-dev git -y
-RUN pip install PyYAML jinja2 paramiko boto
-RUN git clone https://github.com/ansible/ansible.git --recursive
-RUN cd ansible && git checkout tags/v1.9.2-1 && git submodule update --recursive && . ./hacking/env-setup && make install
-RUN pip install http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
+RUN apt-get update && apt-get install python-pip python-dev git -y && \
+    pip install PyYAML jinja2 paramiko boto && \
+    git clone https://github.com/ansible/ansible.git --recursive && \
+    cd ansible && git checkout tags/v1.9.2-1 && \
+    git submodule update --recursive && . ./hacking/env-setup && \
+    make install && \
+    pip install http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
 # Mounting with a volume now
 #COPY .ssh /root/.ssh
 
