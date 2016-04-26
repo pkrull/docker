@@ -7,8 +7,6 @@ ENV MKL_VER=l_mkl_11.3.2.181
 # Install MKL dependency packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
   apt-get install -y \
-#  linux-headers-generic linux-image-generic \
-#  build-essential \
   cpio \
   wget
 
@@ -25,5 +23,6 @@ RUN cd /tmp && \
   cd .. && rm -rf ${MKL_VER}*
 
 # Configure dynamic link
-RUN echo "/opt/intel/mkl/lib/intel64\n/opt/intel/lib/intel64" > /etc/ld.so.conf.d/mkl.conf && \
+RUN echo "/opt/intel/lib/intel64\n/opt/intel/mkl/lib/intel64" > /etc/ld.so.conf.d/mkl.conf && \
+  ldconfig && \
   echo ". /opt/intel/bin/compilervars.sh intel64" >> /etc/bash.bashrc
