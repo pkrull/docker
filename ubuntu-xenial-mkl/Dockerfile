@@ -1,5 +1,5 @@
 # Start with Ubuntu base image
-FROM buildpack-deps:wily
+FROM buildpack-deps:xenial
 MAINTAINER Pete Krull <pete.krull@3dsim.com>
 
 ENV MKL_VER=l_mkl_11.3.2.181
